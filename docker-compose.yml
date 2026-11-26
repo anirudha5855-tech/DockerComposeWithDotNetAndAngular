@@ -1,0 +1,25 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "TestPassword123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./backup:/var/opt/mssql/backups
+  coreapis:
+    build:
+      context: ./CoreApisWithDatabase
+      dockerfile: Dockerfile
+    container_name: coreapis
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__Default=Server=sqlserver;Database=ciitstud;User Id=sa;Password=TestPassword123;Encrypt=False;TrustServerCertificate=True; 
+    ports:
+      - "6050:8080"
+      - "6051:8081"
+
+
