@@ -1,0 +1,22 @@
+
+<h2>Welcome</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Student Name</th>
+      <th>Qualification</th>
+      <th>Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(s of students;track s){
+      <tr>
+        <td>{{s.rollNo}}</td>
+        <td>{{s.studentName}}</td>
+        <td>{{s.qualification}}</td>
+        <td>{{s.percentage}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

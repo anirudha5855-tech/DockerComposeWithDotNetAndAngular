@@ -23,3 +23,15 @@ services:
       - "6051:8081"
 
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    depends_on:
+      - coreapis
+    ports:
+      - "4200:4200"
+ 
+ 
+
